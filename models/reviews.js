@@ -9,8 +9,13 @@ const ReviewSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    recipeName:{
+      type: String,  
+      required: true
+    },
     rating:{
-        type: mongoose.SchemaTypes.Decimal128,
+        //type: mongoose.SchemaTypes.Decimal128,
+        type: Number,
         required: true,
         default: null
     },

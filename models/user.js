@@ -19,7 +19,13 @@ const UserSchema = new mongoose.Schema({
         default: ""
     },
     savedRecipes: [{
-        type: Number,
+        type: Number
+    }],
+    savedRecipeName:[{
+        type: String
+    }],
+    savedRecipeImg:[{
+        type: String
     }]
 })
 

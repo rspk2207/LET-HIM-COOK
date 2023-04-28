@@ -1,11 +1,12 @@
 const User = require('../models/user');
+const Review = require('../models/reviews');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
 const auth_controller = {
-    getSignUp:
+    getAuthentication:
         (req,res) => {
-            res.render('signup');
+            res.render('auth');
         },
     getSignIn:
         (req,res) => {
@@ -34,7 +35,7 @@ const auth_controller = {
         if(errors.length > 0)
         {
             console.log(errors);
-            res.redirect('/auth/signup');
+            res.redirect('/auth/authenticate');
         }
         else
         {
@@ -68,7 +69,7 @@ const auth_controller = {
                             console.log(user);
                         })
                         .catch(err => console.log(err));
-                        res.send("No errors in signup");
+                        res.redirect('/auth/authenticate');
                     }))
                 }
             })
@@ -77,8 +78,8 @@ const auth_controller = {
     validateSignIn:
     (req,res,next) => {
         passport.authenticate('local',{
-            successRedirect: '/auth/verify',
-            failureRedirect: '/auth/signin',
+            successRedirect: '/auth/dashboard',
+            failureRedirect: '/auth/authenticate',
             successMessage:{message: 'signin success'},
             failureMessage:{message:'signin failed ra bunda'}
         }) (req,res,next);
@@ -87,7 +88,18 @@ const auth_controller = {
     verify:
     (req,res) => {
         console.log(req.user);
-        res.render('layout',{user: req.user});
+        res.redirect('/auth/dashboard')
+        //res.render('layout',{user: req.user});
+    },
+    getDashboard:
+    (req,res) => {
+        Review.find({email: req.user.email})
+        .then(reviewData => {
+            res.render('dashboard',{user: req.user, reviewData});
+        })
+        .catch(err => {
+            console.log(err);
+        });
     }
 }
 

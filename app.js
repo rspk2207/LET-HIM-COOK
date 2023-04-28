@@ -9,7 +9,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
-const db = 'mongodb://localhost:27017/csoe_project';
+const db = 'mongodb://0.0.0.0:27017/csoe_project';
 mongoose.connect(db,{useNewUrlParser: true});
 
 app.use(express.urlencoded({ extended: false}));

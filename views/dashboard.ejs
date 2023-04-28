@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/Dashstyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <nav>
+        <ul>
+          <li>Home</li>
+          <li>Browse</li>
+          <li>About us</li>
+          <li id="srch">
+            <div id="search">
+            <input type="text" class="searchTerm" placeholder="Search...">
+              <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+             </button>
+            </div></li>
+          <li style="float:right" id="profile">Profile</li>
+        </ul>
+        </nav>
+ <div id="dash" class="flex-container">
+    <div class="profileinfo">
+      <div class="card" >
+          <div class="card-title">
+             <h2><strong>PROFILE</strong></h2>
+          </div>
+          <div class="card-body">
+         <img src="../images/download.png">
+         <br>
+         <br>
+         <ul> 
+            <li name="name"> <strong>Name: <%= user.name %></strong></li><br>
+            <li name="email"> <strong>Email: <%= user.email %></strong></li><br>
+            <li name="contactNumber"><strong>Contact Number: <%= user.contactNumber %></strong></li><br>
+            <li name="recipesviewed" ><strong>No. of Recipes Saved: 2</strong></li><br>
+            <li name="recipesviewed" ><strong>No. of Comments given: 1</strong></li><br>
+          
+         </ul>
+        </div>
+      </div>
+      </div>
+      <div class="saved">
+        <div class="card" >
+            <div class="card-title">
+               <h2><strong>Saved Recipes</strong></h2>
+            </div>
+            <br>
+            
+         <div class="card-body">
+            <ul>
+                <li> 
+                    <img src="/img/BFV10987_Hasselback_Pizza_Chicken_THUMB_A.jpg">
+                    <div id="recipesaved">
+                        <h3 style="float: right;"><strong>Hasselback Chicken Pizza</strong></h3>
+                        <button id="unsave">Unsave</button>
+                        </div>
+                </li>
+                <li> 
+                    <img src="/img/Tasty_Vegetarian_-_Facebook_-_1080x1080.jpg">
+                    <div id="recipesaved">
+                        <h3 style="float: right;"><strong>Garlic Mashed Sweet Potatoes</strong></h3>
+                        <button id="unsave">Unsave</button>
+                        </div>
+                </li>
+                <!--
+                <li> 
+                    <img src="../images/istockphoto-1356961232-170667a.jpg">
+                    <div id="recipesaved">
+                        <h3><strong>Recipe name</strong></h3>
+                        <button id="unsave">Unsave</button>
+                        </div>
+                </li>
+                <li> 
+                    <img src="../images/istockphoto-1356961232-170667a.jpg">
+                    <div id="recipesaved">
+                    <h3><strong>Recipe name</strong></h3>
+                    <button id="unsave">Unsave</button>
+                    </div>
+                </li>
+                <li> 
+                    <img src="../images/istockphoto-1356961232-170667a.jpg">
+                    <div id="recipesaved">
+                    <h3><strong>Recipe name</strong></h3>
+                    <button id="unsave">Unsave</button>
+                    </div>
+                </li>
+                -->
+            </ul>
+         </div>
+        </div>
+        
+        </div>
+        <div class="comments">
+            <div class="card" >
+                <div class="card-title">
+                   <h2><strong>Your-comments</strong></h2>
+                </div>
+                <br>
+                <div class="card-body">
+                    <ul>
+                        <li>
+                         <p><strong>Hasselback Chicken Pizza</strong> <span style="float:right; font-size:1em;"><button id="remove" >Remove</button></span></p>
+                         <p>Recipe was really tasty</p>
+                        </li>
+                        <!--
+                        <li>
+                         <p><strong>recipe name</strong>  <span style="float:right; font-size:1em;"> <button id="remove" >Remove</button></span></p> 
+                         <p>This is a sample comment. This is intended for no specific purpose.</p>
+                       </li>
+                       <li>
+                        <p><strong>recipe name</strong>  <span style="float:right; font-size:1em;"> <button id="remove" >Remove</button></span></p> 
+                        <p>This is a sample comment. This is intended for no specific purpose.</p>
+                      </li>
+                      <li>
+                        <p><strong>recipe name</strong>  <span style="float:right; font-size:1em;"> <button id="remove" >Remove</button></span></p> 
+                        <p>This is a sample comment. This is intended for no specific purpose.</p>
+                      </li>
+                      <li>
+                        <p><strong>recipe name</strong>  <span style="float:right; font-size:1em;"> <button id="remove" >Remove</button></span></p> 
+                        <p>This is a sample comment. This is intended for no specific purpose.</p>
+                      </li>
+                        -->
+                       </ul>
+                </div>
+            </div>
+            </div>
+    </div>
+<footer></footer>        
+</body>
+
+</html>
