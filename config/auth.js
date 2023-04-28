@@ -7,7 +7,7 @@ module.exports = {
         else
         {
             console.log('you were logged out');
-            res.redirect('/auth/signin');
+            res.redirect('/auth/authenticate');
         }
     }
 }

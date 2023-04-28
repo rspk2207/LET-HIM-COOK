@@ -1,9 +1,10 @@
 //const fetch = require('node-fetch');
 //const { urls, options } = require('../config/recipe');
-
+const User = require('../models/user');
+const Review = require('../models/reviews');
 
 const recipe_controller = {
-    getFeeds:
+    getHome:
     /*
     (req,res) => {
         fetch(urls.feedsList,options)
@@ -18,7 +19,7 @@ const recipe_controller = {
     */
 
     (req,res) => {
-        res.render('recipe',{functionality: 'getFeeds', id: req.params.id})
+        res.render('home',{functionality: 'getFeeds', id: req.params.id})
     },
     getRecipeDetails:
     (req,res) => {
@@ -35,27 +36,61 @@ const recipe_controller = {
     getRecipeList:
     (req,res) => {
         var from,tag;
-        if(!req.params.from)
+        if(!req.query.from)
         {
             from = '0';
         }
         else
         {
-            from = req.params.from;
+            from = req.query.from;
         }
-        if(!req.params.tag)
+        if(!req.query.tag)
         {
             tag = '';
         }
         else
         {
-            tag = req.params.tag;
+            tag = req.query.tag;
         }
-        res.render('list',{functionality: 'getRecipeList', from: from, tag: tag})
+        if(!req.query.q)
+        {
+            q = '';
+        }
+        else
+        {
+            q = req.query.q;
+        }
+        res.render('list',{functionality: 'getRecipeList', from,tag,q});
     },
     getRecipeListSimilar:
     (req,res) => {
         res.render('recipe',{functionality: 'getRecipeSimilar', id: req.params.id})
+    },
+    saveRecipe:
+    (req,res) => {
+        User.findOne({email: req.user.email})
+        .then(user =>{
+            if(!user.savedRecipes.find(id=> { return id == req.body.id}))
+            {
+                user.savedRecipes.push(req.body.id);
+                user.savedRecipeName.push(req.body.name);
+                user.savedRecipeImg.push(req.body.img);
+                user.save();
+                user.markModified('savedRecipes');
+                user.markModified('savedRecipeName');
+                user.markModified('savedRecipeImg');
+            }
+            res.redirect('/'+req.body.id);
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect('/'+req.body.id);
+        });
+        res.redirect('/'+req.body.id);
+    },
+    createComment:
+    (req,res) => {
+
     }
 };
 
