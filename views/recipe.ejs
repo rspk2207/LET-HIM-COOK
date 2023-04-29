@@ -162,23 +162,27 @@
             <span class="fa fa-star"></span>
             <br>
             <br>
-            <form>
-            <textarea name="comments" id="commentbox" >
-            post your comment here..
-           </textarea>
-           <input type="submit" id="postcomment"  value="post comment">
+            <form action="/comment" method="post" id="postcomment">
+            <input type="range" name="rating" id="rating" min="1" max="5">
+            <input type="hidden" name="cid" value="<%= id %>" />
+            <textarea name="comments" id="commentbox" placeholder="Post your comments here..."></textarea>
+            <input type="submit">
           </form> 
           <br>
           <br>
-          <ul>
-           <li>
-            <p><strong>Revanth</strong> <span style="float:right; font-size:1em;">User rating: 5 stars</span></p>
-            <p>Recipe was really tasty.</p>
-           </li>
-           <li>
+          <ul id="comment-list">
+            <% for(let i=0; i < data.length; i++) { %>
+              <li>
+                <p><strong><%= data[i].name %></strong> <span style="float:right; font-size:1em;">User rating: <%= data[i].rating %></span></p>
+                <p><%= data[i].review %></p>
+              </li>
+            <% } %>
+            <!--
+          <li>
             <p><strong>Ackshay</strong>  <span style="float:right; font-size:1em;"> User rating: 2 stars</span></p> 
             <p>It actually tasted terrible and the aroma was very bad as well</p>
           </li>
+          -->
           </ul>
           </div>
       

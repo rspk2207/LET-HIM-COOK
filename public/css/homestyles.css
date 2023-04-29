@@ -75,7 +75,7 @@ nav ul #srch:hover{
   
 }
 body{
-   background-color: #FFE6C7;
+  background-color: #FFE6C7;
   margin:0;
 }
 
@@ -188,3 +188,32 @@ footer {
   width:100%;
 }
 
+#preloader{
+  background: #FFE6C7 url("../img/giphy-1.gif") no-repeat center center;
+  background-size:20%;
+  height:100vh;
+  width: 100%;
+  position:fixed;
+  z-index: 120;
+}
+
+#preloadtext {
+
+z-index:100;
+position:absolute;
+top:60%;
+left:45%;
+z-index:130;
+}
+
+#preloadtext p{
+   
+  font-size: 45px;
+  color:#2d2d2d;
+  font-family:'Indie flower',cursive;
+}
+
+#preloader.display {
+
+  visibility: visible;
+}

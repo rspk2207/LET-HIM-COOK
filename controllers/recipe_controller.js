@@ -22,8 +22,29 @@ const recipe_controller = {
         res.render('home',{functionality: 'getFeeds', id: req.params.id})
     },
     getRecipeDetails:
-    (req,res) => {
-        res.render('recipe',{functionality: 'getRecipeDetails', id: req.params.id})
+    async (req,res) => {
+        let reviewData = null;
+        await Review.find({recipeID: req.params.id})
+        .then( review => {
+            reviewData = review;
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+        /*
+        let reviewData = [];
+        console.log(req.params.id,'hehe');
+        Review.findOne({recipeID: req.params.id})
+        .then(review => {
+            reviewData = review;
+        })
+        .catch(err => {
+            console.log(err,'haha');
+        });
+        */
+        console.log(reviewData,'hoho');
+        if(!reviewData) reviewData = [];
+        res.render('recipe',{functionality: 'getRecipeDetails', id: req.params.id, data: reviewData});
     },
     getTags:
     (req,res) => {
@@ -67,10 +88,10 @@ const recipe_controller = {
         res.render('recipe',{functionality: 'getRecipeSimilar', id: req.params.id})
     },
     saveRecipe:
-    (req,res) => {
-        User.findOne({email: req.user.email})
+    async (req,res) => {
+        await User.findOne({email: req.user.email})
         .then(user =>{
-            if(!user.savedRecipes.find(id=> { return id == req.body.id}))
+            if(!user.savedRecipes.find(id=> { return id == req.body.id}) || user.savedRecipes.length==0)
             {
                 user.savedRecipes.push(req.body.id);
                 user.savedRecipeName.push(req.body.name);
@@ -80,17 +101,50 @@ const recipe_controller = {
                 user.markModified('savedRecipeName');
                 user.markModified('savedRecipeImg');
             }
-            res.redirect('/'+req.body.id);
         })
         .catch(err => {
             console.log(err);
-            res.redirect('/'+req.body.id);
         });
         res.redirect('/'+req.body.id);
     },
+    unSaveRecipe:
+    async (req,res) => {
+        await User.findOne({email: req.user.email})
+        .then(user => {
+            user.savedRecipes.splice(req.body.index,1);
+            user.savedRecipeName.splice(req.body.index,1);
+            user.savedRecipeImg.splice(req.body.index,1);
+            user.save();
+            user.markModified('savedRecipes');
+            user.markModified('savedRecipeName');
+            user.markModified('savedRecipeImg');
+        })
+        .catch(err => {
+            console.log(err);
+        });
+        res.redirect('/auth/dashboard');
+    },
     createComment:
     (req,res) => {
-
+        let review = new Review({
+            email: req.user.email,
+            name: req.user.name,
+            recipeID: parseInt(req.body.cid),
+            recipeName: req.body.recipeName,
+            review: req.body.comments,
+            rating: req.body.rating
+        });
+        review.save();
+        res.redirect('/'+req.body.cid);
+    },
+    removeComment:
+    async (req,res) => {
+        await Review.findByIdAndDelete(req.body.rid)
+        .then('Review deleted successfully')
+        .catch(err => {
+            console.log(err);
+        });
+        res.redirect('/auth/dashboard');
     }
 };
 

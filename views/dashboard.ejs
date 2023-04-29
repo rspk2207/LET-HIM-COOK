@@ -7,6 +7,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="/css/Dashstyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/js/apicall.js" type="text/javascript"></script>
 </head>
 <body>
     <nav>
@@ -53,7 +54,17 @@
             <br>
             
          <div class="card-body">
-            <ul>
+            <ul id="savedRecipes">
+              <% for(let i=0;i < user.savedRecipes.length ; i++) { %>
+                <li> 
+                  <img src="<%= user.savedRecipeImg[i] %>">
+                  <form id="recipesaved" action="/dashboard/unsave" method="post">
+                      <h3 style="float: right;"><a style="text-decoration: none; color: black;" href="/<%= user.savedRecipes[i] %>" ><strong><%= user.savedRecipeName[i] %></strong></a></h3>
+                      <button id="unsave" type="submit" value="<%= i %>" name="index">Unsave</button>
+                  </form>
+                </li>
+                <% } %>
+                <!--
                 <li> 
                     <img src="/img/BFV10987_Hasselback_Pizza_Chicken_THUMB_A.jpg">
                     <div id="recipesaved">
@@ -68,6 +79,7 @@
                         <button id="unsave">Unsave</button>
                         </div>
                 </li>
+                -->
                 <!--
                 <li> 
                     <img src="../images/istockphoto-1356961232-170667a.jpg">
@@ -103,11 +115,18 @@
                 </div>
                 <br>
                 <div class="card-body">
-                    <ul>
+                    <ul id="comments">
+                      <% for(let i=0;i < reviewData.length ; i++) { %>
                         <li>
-                         <p><strong>Hasselback Chicken Pizza</strong> <span style="float:right; font-size:1em;"><button id="remove" >Remove</button></span></p>
-                         <p>Recipe was really tasty</p>
+                         <p><a style="text-decoration: none; color: black;" href="/<%= reviewData[i].recipeID %>"><strong><%= reviewData[i].recipeName %></strong></a><span style="float:right; font-size:1em;">
+                          <form action="/dashboard/removecomment" method="post">
+                            <input type="hidden" name="rid" value="<%= reviewData[i]._id %>" />
+                            <button id="remove" type="submit">Remove</button>
+                          </form>
+                        </span></p>
+                         <p><%= reviewData[i].review %></p>
                         </li>
+                        <% } %>
                         <!--
                         <li>
                          <p><strong>recipe name</strong>  <span style="float:right; font-size:1em;"> <button id="remove" >Remove</button></span></p> 
@@ -131,7 +150,9 @@
             </div>
             </div>
     </div>
-<footer></footer>        
+<footer></footer>
+<script defer>
+</script>        
 </body>
 
 </html>

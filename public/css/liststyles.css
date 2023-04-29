@@ -131,12 +131,57 @@ nav ul {
 
 .Catalogue ul img{ 
       
-     height:80%;
+     height:200px;
      width:100%;
+     padding:10px;
+     background-color: #ffff;
 }
 
 .Catalogue .card li {
-    height :200px;
+    height :300px;
     width:200px;
     margin:20px;
+    box-shadow: 5px 5px 7px 5px rgba(0, 0, 0, 0.2);
+  
+}
+
+.Catalogue .card li .card-body{
+
+  color:#2d2d2d;
+  font-family:'Indie flower',cursive;
+  padding:8px;
+  font-size:1.2em;
+  padding-top:14px;
+  text-align:center;
+  background-color:#ffff;
+}
+
+#preloader{
+  background: #FFE6C7 url("../img/giphy-1.gif") no-repeat center center;
+  background-size:20%;
+  height:100vh;
+  width: 100%;
+  position:fixed;
+  z-index: 120;
+}
+
+#preloadtext {
+
+z-index:100;
+position:absolute;
+top:60%;
+left:45%;
+z-index:130;
+}
+
+#preloadtext p{
+   
+  font-size: 45px;
+  color:#2d2d2d;
+  font-family:'Indie flower',cursive;
+}
+
+#preloader.display {
+
+  visibility: visible;
 }
