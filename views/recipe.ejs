@@ -50,22 +50,23 @@
 <script type="text/javascript" src="/js/apicall.js"></script>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li>Home</li>
-      <li>Browse</li>
-      <li>About us</li>
-      <li id="srch">
-        <form id="search" action="/list" method="get">
-        <input type="hidden" name="from" value="0">
-        <input name="q" type="text" class="searchTerm" placeholder="Search...">
-          <button type="submit" class="searchButton">
-            <i class="fa fa-search"></i>
-         </button>
-        </form></li>
-      <li style="float:right" id="profile">Profile</li>
-    </ul>
-    </nav>
+  <div id="preloader"> <div id="preloadtext"><p><Strong>Cooking . .</Strong></p></div> </div>
+<nav>
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/list">Browse</a></li>
+  <li><a >About us</a></li>
+  <li id="srch">
+    <form id="search" action="/list" method="get">
+    <input type="hidden" name="from" value="0">
+    <input name="q" type="text" class="searchTerm" placeholder="Search...">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
+    </form></li>
+  <li style="float:right" id="profile"><a href="/auth/dashboard">Profile</a></li>
+</ul>
+</nav>
 <div id="recipe" class="flex-container">
     <div class="recipe-content">
       <div class="card" >
@@ -155,19 +156,17 @@
     <div class="comment">
         <div id="comment-card" class="card">
           <div class="card-body">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            <h4><strong>Comments</strong></h4>
+            
             <br>
-            <br>
+            <div class="cbox">
             <form action="/comment" method="post" id="postcomment">
             <input type="range" name="rating" id="rating" min="1" max="5">
             <input type="hidden" name="cid" value="<%= id %>" />
             <textarea name="comments" id="commentbox" placeholder="Post your comments here..."></textarea>
-            <input type="submit">
+            <input type="submit" id="post" value="post">
           </form> 
+        </div>
           <br>
           <br>
           <ul id="comment-list">

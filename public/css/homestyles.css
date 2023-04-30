@@ -25,6 +25,15 @@ nav li  {
   font-size: 1.3em;
 }
 
+nav li a{
+  text-decoration: none;
+  color:#FFff;
+}
+
+nav li a:hover{
+  color:#2d2d2d;
+}
+
 nav li:hover {
   
   background-color:#FFA559;

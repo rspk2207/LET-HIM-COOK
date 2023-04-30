@@ -35,6 +35,7 @@ async function getRecipe(id) {
 	.catch(err => console.error(err));
 	//console.log('kjasdbnj',`aknxmbzsncjnlckajbka`);
 	console.log(data);
+	document.getElementById("preloader").remove();
 	showRecipe(data);
 	//createRecipe()
 }

@@ -18,21 +18,22 @@
 </head>
 <body>
     <div id="preloader"> <div id="preloadtext"><p><Strong>Cooking . .</Strong></p></div> </div>
-    <nav>
-        <ul>
-          <li>Home</li>
-          <li>Browse</li>
-          <li>About us</li>
-          <li id="srch">
-            <div id="search">
-            <input type="text" class="searchTerm" placeholder="Search...">
-              <button type="submit" class="searchButton">
-                <i class="fa fa-search"></i>
-             </button>
-            </div></li>
-          <li style="float:right" id="profile">Profile</li>
-        </ul>
-        </nav>
+<nav>
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/list">Browse</a></li>
+  <li><a >About us</a></li>
+  <li id="srch">
+    <form id="search" action="/list" method="get">
+    <input type="hidden" name="from" value="0">
+    <input name="q" type="text" class="searchTerm" placeholder="Search...">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
+    </form></li>
+  <li style="float:right" id="profile"><a href="/auth/dashboard">Profile</a></li>
+</ul>
+</nav>
     <div class="Browse">
     <h1><strong>Browse through our Catalogue to find your favourite recipes</strong></h1>
 </div>

@@ -9,15 +9,15 @@
     <title>Login or signup</title>
 </head>
 <body>
-    <nav>
-        <ul>
-          <li>Home</li>
-          <li>Search</li>
-          <li>Browse</li>
-          <li>About us</li>
-          <li style="float:right" id="profile">Profile</li>
-        </ul>
-        </nav>
+    <div id="preloader"> <div id="preloadtext"><p><Strong>Cooking . .</Strong></p></div> </div>
+<nav>
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/list">Browse</a></li>
+  <li><a >About us</a></li>
+  <li style="float:right" id="profile"><a href="/auth/dashboard">Profile</a></li>
+</ul>
+</nav>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form action="/auth/signup" method="post">
@@ -61,6 +61,13 @@
             </div>
         </div>
     </div>
+    <script>
+        var loader= document.getElementById("preloader");
+      
+        window.addEventListener("load",function(){
+            loader.style.display="none";
+        })
+      </script>
 <footer></footer>   
 </body>
 
