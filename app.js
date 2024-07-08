@@ -1,4 +1,5 @@
 const express = require('express');
+const env_vars = require('./config/environment');
 //const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -9,8 +10,10 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
-const db = 'mongodb://0.0.0.0:27017/csoe_project';
-mongoose.connect(db,{useNewUrlParser: true});
+
+// const db = `mongodb://${env_vars.MONGODB_USER}:${env_vars.MONGODB_PASSWORD}@${env_vars.DB_HOST}:${env_vars.DB_PORT}/${env_vars.DB_NAME}`;
+const db = `mongodb://mongodb:${env_vars.DB_PORT}/${env_vars.DB_NAME}`;
+mongoose.connect(db,{useNewUrlParser: true})
 
 app.use(express.urlencoded({ extended: false}));
 
@@ -38,5 +41,5 @@ app.use('/auth',require('./routes/auth'));
 app.use('/dashboard',require('./routes/dashboard'));
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 app.listen(PORT,console.log(`APP RUNNING SUCCESSFULLY IN ${PORT}`))

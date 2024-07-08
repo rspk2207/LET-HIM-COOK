@@ -57,13 +57,14 @@ async function getRecipeList(from,tag) {
 	.then(response => {
         data = response;
         //console.log(response);
+		showRecipeList(data.results);
+		console.log(data.results);
+		document.getElementById("preloader").remove();
     })
 	.catch(err => console.error(err));
 	//console.log('kjasdbnj',`aknxmbzsncjnlckajbka`);
 	console.log("ok");
 	//hideloading();
-	showRecipeList(data.results);
-	document.getElementById("preloader").remove();
 	//console.log('kjasdbnj',`aknxmbzsncjnlckajbka`);
 	//document.getElementById('123').innerHTML += '<p class="ahc">'+data.des+'</p>';
 	//createRecipe()
@@ -101,19 +102,34 @@ function showRecipe(data){
 }
 
 function showRecipeList(data){
+	console.log(data);
 	for(let i=0;i<data.length;i++)
 	{
 		if(Object.keys(data[i]).length == 52)
 		{
 			let content = '<li class="card"><img class="card-img-top" src="'+data[i].thumbnail_url+'">';
-			content += '<div class="card-body" id="recipesaved"><a href="/'+data[i].id+'" style="text-decoration:none;color:#2d2d2d"><strong>'+data[i].name+'</strong></a>';
+			content += '<div class="card-body" id="recipesaved"><a href="/details/'+data[i].id+'" style="text-decoration:none;color:#2d2d2d"><strong>'+data[i].name+'</strong></a>';
+			content += '</div></li>';
+			document.getElementById('lists').innerHTML += content;
+		}
+		else if(Object.keys(data[i]).length == 54)
+		{
+			let content = '<li class="card"><img class="card-img-top" src="'+data[i].thumbnail_url+'">';
+			content += '<div class="card-body" id="recipesaved"><a href="/details/'+data[i].id+'" style="text-decoration:none;color:#2d2d2d"><strong>'+data[i].name+'</strong></a>';
 			content += '</div></li>';
 			document.getElementById('lists').innerHTML += content;
 		}
 		else if(Object.keys(data[i]).length == 28)
 		{
 			let content = '<li class="card"><img class="card-img-top" src="'+data[i].recipes[0].thumbnail_url+'">';
-			content += '<div class="card-body" id="recipesaved"><a href="/'+data[i].recipes[0].id+'" style="text-decoration:none;color:#2d2d2d"><strong>'+data[i].recipes[0].name+'</strong></a>';
+			content += '<div class="card-body" id="recipesaved"><a href="/details/'+data[i].recipes[0].id+'" style="text-decoration:none;color:#2d2d2d"><strong>'+data[i].recipes[0].name+'</strong></a>';
+			content += '</div></li>';
+			document.getElementById('lists').innerHTML += content;
+		}
+		else
+		{
+			let content = '<li class="card"><img class="card-img-top" src="'+data[i].recipes[0].thumbnail_url+'">';
+			content += '<div class="card-body" id="recipesaved"><a href="/details/'+data[i].recipes[0].id+'" style="text-decoration:none;color:#2d2d2d"><strong>'+data[i].recipes[0].name+'</strong></a>';
 			content += '</div></li>';
 			document.getElementById('lists').innerHTML += content;
 		}

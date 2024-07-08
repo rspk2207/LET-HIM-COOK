@@ -14,7 +14,7 @@
   <nav>
   <ul>
     <li><a href="/">Home</a></li>
-    <li><a href="/list">Browse</a></li>
+    <li><a href="/list?from=0&q=butter">Browse</a></li>
     <li><a >About us</a></li>
     <li id="srch">
       <form id="search" action="/list" method="get">
@@ -61,7 +61,7 @@
                 <li> 
                   <img src="<%= user.savedRecipeImg[i] %>">
                   <form id="recipesaved" action="/dashboard/unsave" method="post">
-                      <h3 style="float: right;"><a style="text-decoration: none; color: black;" href="/<%= user.savedRecipes[i] %>" ><strong><%= user.savedRecipeName[i] %></strong></a></h3>
+                      <h3 style="float: right;"><a style="text-decoration: none; color: black;" href="/details/<%= user.savedRecipes[i] %>" ><strong><%= user.savedRecipeName[i] %></strong></a></h3>
                       <button id="unsave" type="submit" value="<%= i %>" name="index">Unsave</button>
                   </form>
                 </li>
@@ -120,7 +120,7 @@
                     <ul id="comments">
                       <% for(let i=0;i < reviewData.length ; i++) { %>
                         <li>
-                         <p><a style="text-decoration: none; color: black;" href="/<%= reviewData[i].recipeID %>"><strong><%= reviewData[i].recipeName %></strong></a><span style="float:right; font-size:1em;">
+                         <p><a style="text-decoration: none; color: black;" href="/details/<%= reviewData[i].recipeID %>"><strong><%= reviewData[i].recipeName %></strong></a><span style="float:right; font-size:1em;">
                           <form action="/dashboard/removecomment" method="post">
                             <input type="hidden" name="rid" value="<%= reviewData[i]._id %>" />
                             <button id="remove" type="submit">Remove</button>

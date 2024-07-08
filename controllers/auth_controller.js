@@ -81,7 +81,7 @@ const auth_controller = {
             successRedirect: '/auth/dashboard',
             failureRedirect: '/auth/authenticate',
             successMessage:{message: 'signin success'},
-            failureMessage:{message:'signin failed ra bunda'}
+            failureMessage:{message:'signin failed'}
         }) (req,res,next);
 
     },

@@ -75,7 +75,7 @@ const recipe_controller = {
         }
         if(!req.query.q)
         {
-            q = '';
+            q = 'a';
         }
         else
         {
@@ -105,7 +105,7 @@ const recipe_controller = {
         .catch(err => {
             console.log(err);
         });
-        res.redirect('/'+req.body.id);
+        res.redirect('/details/'+req.body.id);
     },
     unSaveRecipe:
     async (req,res) => {
@@ -135,7 +135,7 @@ const recipe_controller = {
             rating: req.body.rating
         });
         review.save();
-        res.redirect('/'+req.body.cid);
+        res.redirect('/details/'+req.body.cid);
     },
     removeComment:
     async (req,res) => {
